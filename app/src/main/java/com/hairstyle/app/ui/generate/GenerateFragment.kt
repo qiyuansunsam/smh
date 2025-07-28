@@ -186,20 +186,28 @@ class GenerateFragment : Fragment() {
     }
 
     private fun showGeneratedResult() {
-        // Create a placeholder "generated" image with different gradient
-        val resultGradient = GradientDrawable(
-            GradientDrawable.Orientation.BR_TL,
-            intArrayOf(0xFFFF00FF.toInt(), 0xFF00FFFF.toInt())
-        )
-        resultGradient.cornerRadius = resources.getDimension(R.dimen.corner_radius_large)
-
+        // Get main input from ViewModel (mock generate - just return main input)
+        val mainInputBitmap = viewModel.getMainInput()
+        
         // Animate the transition
         binding.generatedImage.apply {
             animate()
                 .rotationY(90f)
                 .setDuration(300)
                 .withEndAction {
-                    background = resultGradient
+                    if (mainInputBitmap != null) {
+                        // Show the main input image as the "generated" result
+                        setImageBitmap(mainInputBitmap)
+                        background = null
+                    } else {
+                        // Fallback to gradient if no main input available
+                        val resultGradient = GradientDrawable(
+                            GradientDrawable.Orientation.BR_TL,
+                            intArrayOf(0xFFFF00FF.toInt(), 0xFF00FFFF.toInt())
+                        )
+                        resultGradient.cornerRadius = resources.getDimension(R.dimen.corner_radius_large)
+                        background = resultGradient
+                    }
                     rotationY = -90f
                     animate()
                         .rotationY(0f)

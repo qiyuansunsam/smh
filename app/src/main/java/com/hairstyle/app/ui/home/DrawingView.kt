@@ -5,7 +5,10 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.FragmentActivity
 import com.hairstyle.app.viewmodel.DrawingViewModel
+import com.hairstyle.app.viewmodel.MainViewModel
 import kotlin.math.abs
 
 class DrawingView @JvmOverloads constructor(
@@ -26,6 +29,7 @@ class DrawingView @JvmOverloads constructor(
     private var isEraserMode = false
 
     private lateinit var viewModel: DrawingViewModel
+    private var mainViewModel: MainViewModel? = null
 
     private val paths = mutableListOf<Pair<Path, Paint>>()
     private var currentPath: Path? = null
@@ -48,6 +52,13 @@ class DrawingView @JvmOverloads constructor(
 
     fun setViewModel(vm: DrawingViewModel) {
         viewModel = vm
+        
+        // Get MainViewModel for state preservation
+        (context as? FragmentActivity)?.let { activity ->
+            mainViewModel = ViewModelProvider(activity)[MainViewModel::class.java]
+            // Restore drawing paths if available
+            restoreDrawingPaths()
+        }
 
         // Observe drawing color changes
         viewModel.drawingColor.observeForever { color ->
@@ -119,6 +130,8 @@ class DrawingView @JvmOverloads constructor(
             }
             MotionEvent.ACTION_UP -> {
                 currentPath = null
+                // Save paths after each stroke
+                saveDrawingPaths()
             }
             else -> return false
         }
@@ -130,7 +143,21 @@ class DrawingView @JvmOverloads constructor(
 
     fun clearDrawing() {
         paths.clear()
+        mainViewModel?.clearDrawingPaths()
         invalidate()
+    }
+    
+    private fun restoreDrawingPaths() {
+        mainViewModel?.let { vm ->
+            val savedPaths = vm.getDrawingPaths()
+            paths.clear()
+            paths.addAll(savedPaths)
+            invalidate()
+        }
+    }
+    
+    fun saveDrawingPaths() {
+        mainViewModel?.setDrawingPaths(paths.toMutableList())
     }
 
     fun setBrushSize(newSize: Float) {

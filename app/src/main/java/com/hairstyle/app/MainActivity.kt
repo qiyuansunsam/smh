@@ -48,6 +48,11 @@ class MainActivity : AppCompatActivity() {
             unifiedBar.setOnTabSelectedListener { tabIndex ->
                 when (tabIndex) {
                     UnifiedBar.TAB_REFERENCE -> {
+                        // Create main input when leaving canvas
+                        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+                        if (currentFragment is HomeFragment) {
+                            currentFragment.createMainInput()
+                        }
                         val referenceFragment = ReferenceFragment()
                         switchFragment(referenceFragment, "reference")
                     }
@@ -55,6 +60,11 @@ class MainActivity : AppCompatActivity() {
                         switchFragment(HomeFragment(), "canvas")
                     }
                     UnifiedBar.TAB_GENERATE -> {
+                        // Create main input when leaving canvas
+                        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+                        if (currentFragment is HomeFragment) {
+                            currentFragment.createMainInput()
+                        }
                         switchFragment(GenerateFragment(), "generate")
                     }
                 }
@@ -69,8 +79,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             unifiedBar.setOnSnapshotClickListener { isActive ->
-                // Handle snapshot toggle - could trigger camera capture or drawing mode
-                viewModel.setSnapshotMode(isActive)
+                // Handle snapshot click - trigger camera capture
+                val currentFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+                if (currentFragment is HomeFragment) {
+                    currentFragment.takePhoto()
+                }
             }
             
             unifiedBar.setOnGenerateClickListener {

@@ -1,5 +1,8 @@
 package com.hairstyle.app.viewmodel
 
+import android.graphics.Bitmap
+import android.graphics.Paint
+import android.graphics.Path
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LiveData
@@ -22,6 +25,22 @@ class MainViewModel : ViewModel() {
     // Reference image data cache
     private val _referenceImageData = MutableLiveData<MutableMap<String, ReferenceImage>>(mutableMapOf())
     val referenceImageData: LiveData<MutableMap<String, ReferenceImage>> = _referenceImageData
+    
+    // Snapshot image storage
+    private val _snapshotImage = MutableLiveData<Bitmap?>(null)
+    val snapshotImage: LiveData<Bitmap?> = _snapshotImage
+    
+    // Main input storage (snapshot + drawing combined)
+    private val _mainInput = MutableLiveData<Bitmap?>(null)
+    val mainInput: LiveData<Bitmap?> = _mainInput
+    
+    // Canvas state preservation
+    private val _isCanvasSnapshotted = MutableLiveData<Boolean>(false)
+    val isCanvasSnapshotted: LiveData<Boolean> = _isCanvasSnapshotted
+    
+    // Drawing paths preservation
+    private val _drawingPaths = MutableLiveData<MutableList<Pair<Path, Paint>>>(mutableListOf())
+    val drawingPaths: LiveData<MutableList<Pair<Path, Paint>>> = _drawingPaths
     
     fun setCurrentFragment(fragment: String) {
         _currentFragment.value = fragment
@@ -71,6 +90,46 @@ class MainViewModel : ViewModel() {
     fun clearSelectedImages() {
         _selectedReferenceImages.value = mutableSetOf()
         _referenceImageData.value = mutableMapOf()
+    }
+    
+    // Snapshot image methods
+    fun setSnapshotImage(bitmap: Bitmap?) {
+        _snapshotImage.value = bitmap
+    }
+    
+    fun getSnapshotImage(): Bitmap? {
+        return _snapshotImage.value
+    }
+    
+    // Main input methods
+    fun setMainInput(bitmap: Bitmap?) {
+        _mainInput.value = bitmap
+    }
+    
+    fun getMainInput(): Bitmap? {
+        return _mainInput.value
+    }
+    
+    // Canvas state methods
+    fun setCanvasSnapshotted(isSnapshotted: Boolean) {
+        _isCanvasSnapshotted.value = isSnapshotted
+    }
+    
+    fun isCanvasSnapshotted(): Boolean {
+        return _isCanvasSnapshotted.value ?: false
+    }
+    
+    // Drawing paths methods
+    fun setDrawingPaths(paths: MutableList<Pair<Path, Paint>>) {
+        _drawingPaths.value = paths
+    }
+    
+    fun getDrawingPaths(): MutableList<Pair<Path, Paint>> {
+        return _drawingPaths.value ?: mutableListOf()
+    }
+    
+    fun clearDrawingPaths() {
+        _drawingPaths.value = mutableListOf()
     }
     
     // Data class for reference images (moved from fragment)
