@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/metallic_dark"
+    android:paddingHorizontal="16dp">
+
+    <View
+        android:id="@+id/activeIndicator"
+        android:layout_width="60dp"
+        android:layout_height="3dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnReference"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="Reference"
+        android:textColor="@color/white"
+        android:backgroundTint="@android:color/transparent"
+        android:textAllCaps="false"
+        android:alpha="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnCanvas"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCanvas"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="Canvas"
+        android:textColor="@color/white"
+        android:backgroundTint="@android:color/transparent"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toEndOf="@+id/btnReference"
+        app:layout_constraintEnd_toStartOf="@+id/btnGenerate"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGenerate"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="Generate"
+        android:textColor="@color/white"
+        android:backgroundTint="@android:color/transparent"
+        android:textAllCaps="false"
+        android:alpha="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnCanvas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

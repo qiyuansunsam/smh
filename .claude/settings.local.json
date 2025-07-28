@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm:*)",
+      "Bash(./gradlew:*)",
+      "Bash(find:*)",
+      "Bash(od:*)",
+      "Bash(adb logcat:*)",
+      "Bash(adb shell am start:*)"
+    ],
+    "deny": []
+  }
+}

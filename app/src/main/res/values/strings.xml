@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HairStyleApp</string>
+    <string name="home">Home</string>
+    <string name="reference">Reference</string>
+    <string name="generate">Generate</string>
+    <string name="clear">Clear</string>
+    <string name="camera">Camera</string>
+    <string name="settings">Settings</string>
+    <string name="pen">Pen</string>
+    <string name="eraser">Eraser</string>
+    <string name="drawing_tools">Drawing Tools</string>
+    <string name="color_picker">Color Picker</string>
+</resources>

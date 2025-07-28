@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+    <dimen name="icon_size_large">32dp</dimen>
+    <dimen name="tool_button_size">48dp</dimen>
+    <dimen name="reference_image_height">200dp</dimen>
+    <dimen name="elevation_medium">4dp</dimen>
+    <dimen name="corner_radius_large">12dp</dimen>
+    <dimen name="color_picker_item_size">40dp</dimen>
+    
+    <!-- Additional Color Picker Dimensions -->
+    <dimen name="color_picker_line_height">40dp</dimen>
+    <dimen name="color_picker_line_spacing">8dp</dimen>
+    <dimen name="color_picker_selector_width">4dp</dimen>
+    <dimen name="color_picker_width">200dp</dimen>
+    
+    <!-- Additional UI Elements -->
+    <dimen name="button_size">60dp</dimen>
+    <dimen name="corner_radius_small">8dp</dimen>
+    <dimen name="corner_radius_medium">16dp</dimen>
+</resources>

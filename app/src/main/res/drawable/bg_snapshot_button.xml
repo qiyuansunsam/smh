@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer hollow circle - white border only -->
+    <item>
+        <shape android:shape="oval">
+            <stroke 
+                android:width="3dp" 
+                android:color="@color/white" />
+            <solid android:color="@android:color/transparent" />
+            <size 
+                android:width="60dp" 
+                android:height="60dp" />
+        </shape>
+    </item>
+    
+    <!-- Inner filled white circle - separate from outer -->
+    <item android:top="8dp" android:bottom="8dp" android:left="8dp" android:right="8dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+</layer-list>
